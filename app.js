@@ -24,8 +24,14 @@ const userSchema={
 const User=mongoose.model("User",userSchema);
 
 app.get("/",function(req,res){
-    res.send("<h1>Welcome To User Login Page</h1>");
+    res.sendFile(__dirname+"/login.html");
 });
+
+app.get("/register",function(rec,res){
+
+    res.sendFile(__dirname+"/register.html");
+
+})
 
 app.post("/register",function(req,res){
 
@@ -43,7 +49,7 @@ app.post("/register",function(req,res){
 
 newUser.save(function (err) {
     if(!err){
-        res.send(`Thanks For Registration Mr/Mrs. ${req.body.name}`);
+        res.send(`<h2>Thanks For Registration Mr/Mrs. <h1> ${req.body.name}</h1></h2> <a href="/"><button>Login</button></a>`);
     }else{
         console.log(err);
     }
@@ -59,7 +65,7 @@ app.post("/login",function(req,res){
         if(!err){
             if(foundUser.password===req.body.password){
                 
-                res.send(`You Are Successfully LogedIn Mr/Mrs. ${foundUser.name}`);
+                res.send(`<h2>You Are Successfully LogedIn <h1> ${foundUser.name}</h1></h2>`);
             }else{
                 res.send("User id And Password Dosen't Matched ");
             }
