@@ -24,7 +24,7 @@ const userSchema={
 const User=mongoose.model("User",userSchema);
 
 app.get("/",function(req,res){
-    res.sendFile(__dirname+"/login.html");
+    res.sendFile(__dirname+"/index.html");
 });
 
 app.get("/register",function(rec,res){
