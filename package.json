@@ -1,7 +1,6 @@
 {
   "name": "mobileshpoproject",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,5 +12,15 @@
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "mongoose": "^6.5.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jatin-pfs/MobileShopPTS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jatin-pfs/MobileShopPTS/issues"
+  },
+  "homepage": "https://github.com/jatin-pfs/MobileShopPTS#readme",
+  "description": ""
 }
