@@ -15,6 +15,9 @@
 </head>
 
 <body>
+
+    <!-- nanbar for testing pages -->
+
     <nav class="navbar sticky-top navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">Orange City Mobile</a>
@@ -50,6 +53,8 @@
         </div>
          
       </nav>
+
+
     <section class="vh-100">
         <div class="container">
             <div class="row">
@@ -62,26 +67,20 @@
 
                     <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
 
-                        <form action="/login" method="post" style="width: 23rem;">
+                        <form action="/ownerLogin" method="post" style="width: 23rem;">
 
-                            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color:#00c400 ;"><em><b>Login Account</em></b></h3>
+                            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color:#00c400 ;"><em><b>Owner Login</em></b></h3>
 
                             <div class="form-outline mb-4 ">
-                                <label class="form-label" for="form2Example18">Mobile No.</label>
-                                <input type="text" name="userName" placeholder="Enter your mobile number" id="form2Example18"
+                                <label class="form-label" for="form2Example18">Owner Id</label>
+                                <input type="email" name="ownerId" required placeholder="Enter your Email Address" id="form2Example18"
                                     class="form-control form-control-lg" />
                             </div>
 
-                            <div class="form-outline mb-4 col">
-                                <label class="form-label" for="form2Example18">D.O.B</label>
-                                <input type="date" id="form2Example18" class="form-control form-control-lg" />
-                            </div>
-                            <div class="divider d-flex align-items-center my-4">
-                                <p class="text-center  mx-3 mb-0">Or</p>
-                              </div>
+                            
                             <div class="form-outline mb-4 col">
                                 <label class="form-label" for="form2Example18">Password</label>
-                                <input type="password" name="password" id="form2Example18" class="form-control form-control-lg" />
+                                <input type="password" placeholder="Enter Password" required name="password" id="form2Example18" class="form-control form-control-lg" />
                             </div>
 
                             <div class="pt-1 mb-4">
