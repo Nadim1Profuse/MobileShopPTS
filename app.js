@@ -32,7 +32,70 @@ const ownerSchema={
     password:String
 }
 
-// **********Schema For Distrbuter Invoice or Stocklist**************//
+// **********Schema For adding  New Mobile Model**************//
+
+const addModelSchema={
+    brandName:String,
+    modelName:String,
+    varrient:{
+        type:String
+    },
+    color:{
+        type:String
+    }
+}
+
+// **********Schema For adding New Accessories**************//
+
+const addAccessoriesSchema={
+    itemName:String,
+    itemSpecs1:String,
+    itemSpecs2:String
+}
+
+
+
+// **********Schema For adding Distributer Detail **************//
+
+const distributerSchema={
+    name:String,
+    gstNumber:String,
+    address:String,
+    ContactNumber:Number
+}
+
+// **********Schema For adding Mobiles To Stock**************//
+
+const mobileStockSchema={
+    brandName:String,
+    modelName:String,
+    varrient:String,
+    color:String,
+    quantity:Number,
+}
+
+// **********Schema For adding Accessories To Stock**************//
+
+const accessoriesStockSchema={
+    itemName:String,
+    itemSpecs1:String,
+    itemSpecs2:String,
+    quantity:Number
+}
+
+// **********Schema For Distributer Invoice**************//
+
+const distributerInvoiceSchema={
+    invoiceNumber:Number,
+    distributerDetails:String,
+    itemNumber:Number,
+    productDetails:String,
+    productQuantity:Number,
+    netAmount:Number,
+    amountPaid:Number,
+    paymentMode:String,
+    balanceAmount:Number
+}
 
 //Invoice Number
 //Distributer Name
@@ -62,12 +125,44 @@ const User=mongoose.model("User",userSchema);
 
 const Owner=mongoose.model("Owner",ownerSchema);
 
+// **********Model And Collection for adding New Accessories**************//
+
+
+const Accessories=mongoose.model("Accessories",addAccessoriesSchema);
+
+
+// **********Model And Collection for adding Mobile Model**************//
+
+const Model=mongoose.model("Model",addModelSchema);
+
+
+// **********Model And Collection for adding New Distributers**************//
+
+const Distributer=mongoose.model("Distributer",distributerSchema)
+
+
+// **********Model And Collection for adding Mobile To Stock**************//
+
+const MobileStock=mongoose.model("MobileStock",mobileStockSchema);
+
+// **********Model And Collection for adding Accessories To Stock**************//
+
+const AccessoriesStock=mongoose.model("AccessoriesStock",accessoriesStockSchema);
+
+
+
+
+
+
+
+
 
 
 
 // **********Get Request For Home Page /Owner Login**************//
 
 app.get("/",function(req,res){
+
     res.sendFile(__dirname+"/login.html");
 });
 
@@ -148,7 +243,7 @@ app.post("/login",function(req,res){
 app.post("/ownerlogin",function(req,res){
     
     console.log(req.body);
-    res.send(`<h2>Welcom to Admin Panel Mr. <h1> ${req.body.ownerId}</h1></h2>`)
+    res.sendFile(__dirname+"/dashboard.html")
     
 
 })
@@ -183,6 +278,52 @@ app.post("/ownerRegistration",function(req,res){
     });
 
 });
+
+// **********Post Request For Adding New Mobile Model**************//
+
+app.post("/addNewModel", function(req,res){
+    console.log(req.body);
+
+    const newModel=new Model({
+
+    brandName:req.body.brandName,
+    modelName:req.body.modelName,
+    varrient:req.body.varrient,
+    color:req.body.color
+   });
+
+   newModel.save(function(err){
+    if(!err){
+        res.send("successfully created new model." );
+    }else{
+        console.log(err);
+    }
+   })
+
+});
+
+
+// **********Post Request For Adding New Accessories Item**************//
+app.post("/newAccessories",function(req,res){
+
+
+    const newAccessories=new Accessories({
+
+        itemName:req.body.itemName,
+        itemSpecs1:req.body.itemSpecs1,
+        itemSpecs2:req.body.itemSpecs2
+    
+    })
+
+    newAccessories.save(function(err){
+        if(!err){
+            res.send(`successfully added New accessories item of ${req.body.itemName}`);
+        }
+    })
+    
+
+
+})
 
 
 
