@@ -40,7 +40,7 @@
                 
                 <a href="/customerInvoice"
                 class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span
-                    class="nav_name">Customer Invoice</span> </a> 
+                    class="nav_name">Customer Invoice</span> </a>  
                 
                 <a href="/addNewDistributer" class="nav_link"> <i
                     class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Add New Distributer</span> </a> 
@@ -67,8 +67,35 @@
     <div>
         <h4>Dashboard</h4>
         <div class="main-container">
-            <h2 style="color: darkgreen;">Welcome Mr.Owner</h2>
-            
+            <h2>Add New Accessories</h2>
+            <form action="/addNewAccessories" method="post">
+
+                <div class="row">
+
+                    <div class="form-group col">
+                        <label >Accessories Name</label>
+                        <input type="text" name="accsName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group col">
+                        <label >Compatable For</label>
+                        <input type="text" class="form-control" id="exampleInputlastname" name="compatable">
+                    </div>
+                    <div class="form-group col">
+                        <label >Specs</label>
+                        <input type="text" class="form-control" id="exampleInputlastname" name="specs">
+                    </div>
+                </div>
+
+                
+                
+                <button type="submit"  class="btn" style="background-color:#ff6d01;color: #fff;" name="create">Submit</button>
+            </form>
         </div>
     </div>
     <!--Container Main end-->

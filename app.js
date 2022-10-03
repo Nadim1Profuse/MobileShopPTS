@@ -11,6 +11,9 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://127.0.0.1:27017/mobileShopDB");
 
+
+// ##############*** Schemas Start from Here ***###############
+
 // **********Schema For Users Registration**************//
 
 const userSchema={
@@ -61,10 +64,10 @@ const distributerSchema={
     name:String,
     gstNumber:String,
     address:String,
-    ContactNumber:Number
+    contactNumber:Number
 }
 
-// **********Schema For adding Mobiles To Stock**************//
+// **********Schema For adding/Update Mobile's Stock**************//
 
 const mobileStockSchema={
     brandName:String,
@@ -74,7 +77,7 @@ const mobileStockSchema={
     quantity:Number,
 }
 
-// **********Schema For adding Accessories To Stock**************//
+// **********Schema For adding/Update Accessories's Stock**************//
 
 const accessoriesStockSchema={
     itemName:String,
@@ -87,8 +90,8 @@ const accessoriesStockSchema={
 
 const distributerInvoiceSchema={
     invoiceNumber:Number,
-    distributerDetails:String,
-    itemNumber:Number,
+    distributerName:String,
+    gstNumber:Number,
     productDetails:String,
     productQuantity:Number,
     netAmount:Number,
@@ -97,23 +100,26 @@ const distributerInvoiceSchema={
     balanceAmount:Number
 }
 
-//Invoice Number
-//Distributer Name
-//Gst. Number og dist.
-//item Number
-//Brand Name
-//Model Name
-//Varrinet
-//Color
-//price/unit
-//Quantity
-//total Amount
-//Net Amount
+// **********Schema For Customer Mobile Invoice**************//
 
-//Payment Method
-//Amount Paid
-//Amount Balance
+const customerMobileInvoiceSchema={
+    invoiceNumber:Number,
+    customerName:String,
+    customerMobNumber:Number,
+    customerDOB:Date,
+    mobBrand:String,
+    mobModel:String,
+    mobVarrient:String,
+    mobColor:String,
+    imeiNumber1:String,
+    imeiNumber2:String,
+    paymentMode:String,
+    mobPrice:Number
+}
 
+
+
+// ##############*** Models and Collections Start from Here ***###############
 
 
 
@@ -125,15 +131,16 @@ const User=mongoose.model("User",userSchema);
 
 const Owner=mongoose.model("Owner",ownerSchema);
 
+
+// **********Model And Collection for adding Mobile Model**************//
+
+const MobileModel=mongoose.model("Mobile_Model",addModelSchema);
+
+
 // **********Model And Collection for adding New Accessories**************//
 
 
 const Accessories=mongoose.model("Accessories",addAccessoriesSchema);
-
-
-// **********Model And Collection for adding Mobile Model**************//
-
-const Model=mongoose.model("Model",addModelSchema);
 
 
 // **********Model And Collection for adding New Distributers**************//
@@ -141,29 +148,33 @@ const Model=mongoose.model("Model",addModelSchema);
 const Distributer=mongoose.model("Distributer",distributerSchema)
 
 
-// **********Model And Collection for adding Mobile To Stock**************//
+// **********Model And Collection for adding/update Mobile's Stock**************//
 
-const MobileStock=mongoose.model("MobileStock",mobileStockSchema);
+const MobileStock=mongoose.model("Mobile_Stock",mobileStockSchema);
 
-// **********Model And Collection for adding Accessories To Stock**************//
+// **********Model And Collection for adding/update Accessories's Stock**************//
 
-const AccessoriesStock=mongoose.model("AccessoriesStock",accessoriesStockSchema);
-
-
+const AccessoriesStock=mongoose.model("Accessories_Stock",accessoriesStockSchema);
 
 
+// **********Model And Collection for Distributer's Invoice**************//
 
-
-
+const DistributerInvoice=mongoose.model("Distributer_Invoice",distributerInvoiceSchema);
 
 
 
+// **********Model And Collection for Customer's Mobile Invoice**************//
+
+const CustomerMobileInvoice=mongoose.model("Customer_Mobile_Invoice",customerMobileInvoiceSchema);
+
+
+// ##############*** Get Requests Start from Here ***###############
 
 // **********Get Request For Home Page /Owner Login**************//
 
 app.get("/",function(req,res){
 
-    res.sendFile(__dirname+"/login.html");
+    res.sendFile(__dirname+"/dashboard.html");
 });
 
 // **********Get Request For Customer Registration**************//
@@ -186,9 +197,56 @@ app.get("/ownerRegister",function(req,res){
     res.sendFile(__dirname+"/ownerReg.html");
 });
 
+// **********Get Request For Distributer Invoice**************//
+
+app.get("/distributerInvoice",function(req,res){
+    res.sendFile(__dirname+"/distributerInvoice.html");
+})
+
+// **********Get Request Customer Invoice**************//
+
+app.get("/customerInvoice",function(req,res){
+    res.sendFile(__dirname+"/customerInvoice.html")
+})
+
+// **********Get Request For Add Distributer**************//
+
+
+app.get("/distributerInvoice",function(req,res){
+    res.sendFile(__dirname+"//distributerInvoice.html")
+})
+
+app.get("/addNewDistributer",function(req,res){
+    res.sendFile(__dirname+"/addNewDist.html")
+})
+
+// **********Get Request For Add New Mobile Model**************//
+
+app.get("/addMbModel",function(req,res){
+    res.sendFile(__dirname+"/newMobileModel.html")
+})
+
+// **********Get Request For Add New Accessories**************//
+
+app.get("/newAccessories",function(req,res){
+    res.sendFile(__dirname+"/newAccessories.html")
+})
+
+// **********Get Request For Updating Mobile Stock**************//
+
+app.get("/updateMobileStock",function(req,res){
+    res.sendFile(__dirname+"/updateMobileStock.html")
+})
 
 
 
+app.get("/updateAccStock",function(req,res){
+    res.sendFile(__dirname+"/updateAccStock.html")
+})
+
+
+
+// ##############*** Post Resquests Start from Here ***###############
 
 // **********Post Request For Customer Registration**************//
 
@@ -321,10 +379,23 @@ app.post("/newAccessories",function(req,res){
         }
     })
     
+});
 
+
+// **********Post Request For Adding New Distributer**********
+
+app.post("/addDistributer",function(req,res){
+
+    const newDistributer=new Distributer({
+
+    name:req.body.name,
+    gstNumber:req.body.gstNumber,
+    address:req.body.address,
+    contactNumber:req.body.contactNumber
+
+    })
 
 })
-
 
 
 

@@ -67,8 +67,47 @@
     <div>
         <h4>Dashboard</h4>
         <div class="main-container">
-            <h2 style="color: darkgreen;">Welcome Mr.Owner</h2>
-            
+            <h2>Update Accessories Stock</h2>
+            <form action="/updateAccStock" method="post">
+
+                <div class="row">
+
+                    <div class="form-group col">
+                        <label >Accessories Name</label>
+                        <input type="text" name="accsName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group col">
+                        <label >Compatable For</label>
+                        <input type="text" class="form-control" id="exampleInputlastname" name="compatable">
+                    </div>
+                    <div class="form-group col">
+                        <label >Specs</label>
+                        <input type="text" class="form-control" id="exampleInputlastname" name="specs">
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col">
+                        <label >Quantity</label>
+                        <input type="number" class="form-control" id="exampleInputlastname" name="compatable">
+                    </div>
+                    <div class="form-group col">
+                        <label ></label>
+                        <input type="hidden" class="form-control" id="exampleInputlastname" name="specs">
+                    </div>
+                </div>
+
+                
+                
+                <button type="submit"  class="btn" style="background-color:#ff6d01;color: #fff;" name="create">Submit</button>
+            </form>
         </div>
     </div>
     <!--Container Main end-->
